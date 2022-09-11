@@ -11,7 +11,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        main
+        <h2 className='text-center text-xl font-bold'>Team Builder</h2>
       </main>
     </div>
   );
