@@ -1,8 +1,23 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { trpc } from '../utils/trpc';
+import { ILogin, loginSchema } from '../utils/validation/auth';
+import { useForm } from 'react-hook-form';
+import { signIn } from 'next-auth/react';
+import { useCallback } from 'react';
+import Link from 'next/link';
 
 const Home: NextPage = () => {
+  const { register, handleSubmit } = useForm<ILogin>({
+    resolver: zodResolver(loginSchema)
+  });
+
+  const onSubmit = useCallback(
+    async (data: ILogin) => {
+      await signIn('credentials', {...data, callbackUrl: '/dashboard'});
+    }, []
+  );
 
   return (
     <div>
@@ -13,8 +28,40 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <h2 className='text-center text-xl font-bold'>Team Builder</h2>
-        {/* <p>from api: {hello.data.msg}</p> */}
+      <form 
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-slate-200 flex items-center justify-center h-screen w-full"
+        >
+          <div className="bg-slate-300 w-96 shadow-xl rounded-lg p-5 space-y-5">
+            <h2 className="text-2xl">Welcome back!</h2>
+            <input 
+              type="email" 
+              placeholder="Email"
+              className="w-full p-3 rounded" 
+              {...register('email')}
+            />
+            <input 
+              type="password" 
+              placeholder="Password"
+              className="w-full p-3 rounded" 
+              {...register('password')}
+            />
+            <div className="flex justify-between">
+              <Link href='/sign-up'>
+                <button className="w-[48%] py-3 border-2 border-green-200 rounded">
+                  Go to sign up
+                </button>
+              </Link>
+              <button 
+                className="w-[48%] bg-green-200 border-2 border-green-200 rounded py-3"
+                type="submit"
+                onSubmit={() => onSubmit}
+              >
+                Log in
+              </button>
+            </div>
+          </div>
+        </form>
       </main>
     </div>
   );
