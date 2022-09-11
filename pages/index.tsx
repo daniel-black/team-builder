@@ -1,7 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { trpc } from '../utils/trpc';
 
 const Home: NextPage = () => {
+  const hello = trpc.useQuery(['hello', { text: 'Dan' }]);
+
+  if (!hello.data) return <p>...Loading</p>;
+
   return (
     <div>
       <Head>
@@ -12,6 +17,7 @@ const Home: NextPage = () => {
 
       <main>
         <h2 className='text-center text-xl font-bold'>Team Builder</h2>
+        <p>from api: {hello.data.msg}</p>
       </main>
     </div>
   );
