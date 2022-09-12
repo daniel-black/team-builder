@@ -16,7 +16,6 @@ const Dashboard: NextPage = () => {
   const [searchResult, setSearchResult] = useState<null | Pokemon>(null);
   const [team, setTeam] = useState<Array<Pokemon>>([]);
 
-  console.log(team);
 
   const addPokemonToTeam = () => {
     if (!searchResult || team.length === 6) return;

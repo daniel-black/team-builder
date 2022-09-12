@@ -2,7 +2,7 @@ import { Sprites } from "../types/pokemonTypes";
 
 type Props = {
   name?: string,
-  imgUrl: string | null,
+  imgUrl?: string,
   sprites?: Sprites,
   big?: boolean
 };
@@ -13,7 +13,7 @@ const PokemonImage = ({name, imgUrl, sprites, big = false}: Props) => {
 
   return (
       <img 
-        className={`${big ? 'h-96' : 'h-40'} block`}
+        className={`${big ? 'h-80' : 'h-40'} block`}
         src={imgUrl || sprites.front_default} 
         alt={name} 
       />

@@ -9,6 +9,7 @@ type Props = {
 
 const SearchBar = ({ setSearchResult }: Props) => {
   const [search, setSearch] = useState('');
+  const [notFound, setNotFound] = useState(false);
 
   const searchForPokemon = async () => {
     const token = search.toLowerCase();
@@ -19,6 +20,7 @@ const SearchBar = ({ setSearchResult }: Props) => {
       setSearchResult(pokemon);
     } catch (err) {
       console.log(err);
+      setNotFound(true);
     }
   };
 
@@ -27,24 +29,32 @@ const SearchBar = ({ setSearchResult }: Props) => {
   const onSubmit: SubmitHandler<FormValues> = searchForPokemon;
 
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className='flex flex-col items-center justify-center space-y-2 text-emerald-800'>
       <h1 className='text-3xl'>Build your team!</h1>
       <form 
-        className='space-x-3'
         onSubmit={handleSubmit(onSubmit)}
       >
         <input 
           {...register('name')}
           type="text" 
           placeholder='pikachu' 
-          className='p-3 rounded'
+          spellCheck={false}
+          className='p-2 rounded-l-3xl text-center w-40 outline-none shadow border border-emerald-400'
           value={search}
+          onFocus={(e) => {
+            setNotFound(false);
+            setSearch('');
+          }}
           onChange={(e) => setSearch(e.currentTarget.value)}
         />
-        <button className='bg-emerald-400 rounded p-3' type='submit'>
+        <button 
+          className='bg-emerald-400 rounded-r-3xl p-2 shadow border border-emerald-400 outline-none hover:bg-emerald-500' 
+          type='submit'
+        >
           Search
         </button>
       </form>
+      {notFound && <p>Uh oh, couldn't find <span className='font-bold'>{search}</span>!</p>}
     </div>
   );
 }
