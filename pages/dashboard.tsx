@@ -37,13 +37,25 @@ const Dashboard: NextPage = () => {
           Add <span className='capitalize'>{searchResult?.name}</span> to team!
         </button>
 
-      <div className='grid grid-cols-3 gap-3 bg-slate-100'>
-        <div className='h-20 w-20 rounded bg-blue-300'></div>
-        <div className='h-20 w-20 rounded bg-blue-300'></div>
-        <div className='h-20 w-20 rounded bg-blue-300'></div>
-        <div className='h-20 w-20 rounded bg-blue-300'></div>
-        <div className='h-20 w-20 rounded bg-blue-300'></div>
-        <div className='h-20 w-20 rounded bg-blue-300'></div>
+      <div className='grid grid-cols-3 bg-slate-100 max-w-fit'>
+        <div className='h-40 w-40 rounded'>
+          {team[0] ? <PokemonImage name={team[0].name} imgUrl={team[0].sprites.front_default} sprites={team[0].sprites} /> : null}
+        </div>
+        <div className='h-40 w-40 rounded'>
+          {team[1] ? <PokemonImage name={team[1].name} imgUrl={team[1].sprites.front_default} sprites={team[1].sprites} /> : null}
+        </div>
+        <div className='h-40 w-40 rounded'>
+          {team[2] ? <PokemonImage name={team[2].name} imgUrl={team[2].sprites.front_default} sprites={team[2].sprites} /> : null}
+        </div>
+        <div className='h-40 w-40 rounded'>
+          {team[3] ? <PokemonImage name={team[3].name} imgUrl={team[3].sprites.front_default} sprites={team[3].sprites} /> : null}
+        </div>
+        <div className='h-40 w-40 rounded'>
+          {team[4] ? <PokemonImage name={team[4].name} imgUrl={team[4].sprites.front_default} sprites={team[4].sprites} /> : null}
+        </div>
+        <div className='h-40 w-40 rounded'>
+          {team[5] ? <PokemonImage name={team[5].name} imgUrl={team[5].sprites.front_default} sprites={team[5].sprites} /> : null}
+        </div>
       </div>
 
     </div>
