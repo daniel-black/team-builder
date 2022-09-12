@@ -3,6 +3,7 @@ import { hash } from 'argon2';
 
 import { Context } from './context';
 import { signUpSchema } from '../utils/validation/auth';
+import { z } from 'zod';
 
 export const serverRouter = trpc.router<Context>()
   .mutation('signup', {
