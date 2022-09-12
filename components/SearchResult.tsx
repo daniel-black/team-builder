@@ -7,6 +7,8 @@ type Props = {
 };
 
 const SearchResult = ({ pokemon }: Props) => {
+  const [img, setImg] = useState(pokemon?.sprites.other?.["official-artwork"]?.front_default || '');
+
   if (!pokemon) return null;
 
   const official = pokemon.sprites.other?.["official-artwork"]?.front_default ?? null;
@@ -15,8 +17,6 @@ const SearchResult = ({ pokemon }: Props) => {
   const dreamWorld = pokemon.sprites.other?.dream_world?.front_default ?? null;
   const home = pokemon.sprites.other?.home?.front_default ?? null;
   const homeShiny = pokemon.sprites.other?.home?.front_shiny ?? null;
-
-  const [img, setImg] = useState(pokemon.sprites.other?.["official-artwork"]?.front_default);
 
 
   return (
