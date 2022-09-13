@@ -32,6 +32,7 @@ const SearchBar = ({ setSearchResult }: Props) => {
     <div className='flex flex-col items-center justify-center space-y-2 text-emerald-800'>
       <h1 className='text-3xl'>Build your team!</h1>
       <form 
+        className='text-xl'
         onSubmit={handleSubmit(onSubmit)}
       >
         <input 
@@ -39,7 +40,7 @@ const SearchBar = ({ setSearchResult }: Props) => {
           type="text" 
           placeholder='pikachu' 
           spellCheck={false}
-          className='p-2 rounded-l-3xl text-center w-40 outline-none shadow border border-emerald-400'
+          className='p-2 rounded-l-full text-center w-52 outline-none shadow border border-emerald-400'
           value={search}
           onFocus={(e) => {
             setNotFound(false);
@@ -48,7 +49,7 @@ const SearchBar = ({ setSearchResult }: Props) => {
           onChange={(e) => setSearch(e.currentTarget.value)}
         />
         <button 
-          className='bg-emerald-400 rounded-r-3xl p-2 shadow border border-emerald-400 outline-none hover:bg-emerald-500' 
+          className='bg-emerald-400 rounded-r-full p-2 shadow border border-emerald-400 outline-none hover:bg-emerald-500 focus:bg-emerald-500' 
           type='submit'
         >
           Search

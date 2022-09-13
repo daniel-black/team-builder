@@ -11,14 +11,14 @@ const SearchResult = ({ pokemon }: Props) => {
   const official = pokemon.sprites.other?.["official-artwork"]?.front_default;
 
   return (
-    <div className='flex justify-center items-center px-10'>
+    <div className='flex justify-center items-center px-2 bg-emerald-100/80 w-full'>
       <PokemonImage 
         name={pokemon?.name} 
         imgUrl={official} 
         sprites={pokemon?.sprites} 
         big={true}
       />
-      <div className="px-3 w-96">
+      <div className="px-3">
         <h2 className="text-3xl capitalize">
           {pokemon?.name}
         </h2>

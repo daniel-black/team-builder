@@ -4,9 +4,9 @@ import Navbar from '../components/Navbar';
 import { Pokemon } from '../types/pokemonTypes';
 
 import { requireAuth } from '../utils/requireAuth';
-import PokemonImage from '../components/PokemonImage';
 import SearchBar from '../components/SearchBar';
 import SearchResult from '../components/SearchResult';
+import TeamPokemon from '../components/TeamPokemon';
 
 export const getServerSideProps = requireAuth(async (ctx) => {
   return { props: {} };
@@ -14,47 +14,66 @@ export const getServerSideProps = requireAuth(async (ctx) => {
 
 const Dashboard: NextPage = () => {
   const [searchResult, setSearchResult] = useState<null | Pokemon>(null);
-  const [team, setTeam] = useState<Array<Pokemon>>([]);
+  // const [team, setTeam] = useState<Array<Pokemon>>([]);
 
+  const [p1, setP1] = useState<Pokemon | null>(null);
+  const [p2, setP2] = useState<Pokemon | null>(null);
+  const [p3, setP3] = useState<Pokemon | null>(null);
+  const [p4, setP4] = useState<Pokemon | null>(null);
+  const [p5, setP5] = useState<Pokemon | null>(null);
+  const [p6, setP6] = useState<Pokemon | null>(null);
+
+  const [teamSize, setTeamSize] = useState(0);
 
   const addPokemonToTeam = () => {
-    if (!searchResult || team.length === 6) return;
-    setTeam(team => [...team].concat(searchResult));
+    if (teamSize >= 6) return;
+    switch (teamSize) {
+      case 0:
+        setP1(searchResult);
+        break;
+      case 1:
+        setP2(searchResult);
+        break;
+      case 2: 
+        setP3(searchResult);
+        break;
+      case 3:
+        setP4(searchResult);
+        break;
+      case 4: 
+        setP5(searchResult);
+        break;
+      case 5:
+        setP6(searchResult);
+        break;
+    }
+    setTeamSize(teamSize + 1);
   }
 
   return (
-    <div className='bg-emerald-50 h-screen flex flex-col space-y-5'>
+    <div className='bg-emerald-50 h-full min-h-screen flex flex-col items-center space-y-4 pb-10'>
       
       <Navbar />
       <SearchBar setSearchResult={(pokemon) => setSearchResult(pokemon)} />
       <SearchResult pokemon={searchResult} />
 
-      <button 
-          className='bg-sky-400 rounded-xl p-3 w-96 border-2 border-sky-600 hover:bg-sky-500'
+      {searchResult && (
+        <button 
+          className='bg-sky-400 text-sky-900 rounded-full p-2 w-64 border text-xl border-sky-600 hover:bg-sky-500'
           onClick={addPokemonToTeam}
         >
           Add <span className='capitalize'>{searchResult?.name}</span> to team!
         </button>
+      )}
 
-      <div className='grid grid-cols-3 bg-slate-100 max-w-fit'>
-        <div className='h-40 w-40 rounded'>
-          {team[0] ? <PokemonImage name={team[0].name} imgUrl={team[0].sprites.front_default} sprites={team[0].sprites} /> : null}
-        </div>
-        <div className='h-40 w-40 rounded'>
-          {team[1] ? <PokemonImage name={team[1].name} imgUrl={team[1].sprites.front_default} sprites={team[1].sprites} /> : null}
-        </div>
-        <div className='h-40 w-40 rounded'>
-          {team[2] ? <PokemonImage name={team[2].name} imgUrl={team[2].sprites.front_default} sprites={team[2].sprites} /> : null}
-        </div>
-        <div className='h-40 w-40 rounded'>
-          {team[3] ? <PokemonImage name={team[3].name} imgUrl={team[3].sprites.front_default} sprites={team[3].sprites} /> : null}
-        </div>
-        <div className='h-40 w-40 rounded'>
-          {team[4] ? <PokemonImage name={team[4].name} imgUrl={team[4].sprites.front_default} sprites={team[4].sprites} /> : null}
-        </div>
-        <div className='h-40 w-40 rounded'>
-          {team[5] ? <PokemonImage name={team[5].name} imgUrl={team[5].sprites.front_default} sprites={team[5].sprites} /> : null}
-        </div>
+
+      <div className='grid grid-cols-3 max-w-fit mb-20 gap-0.5'>
+        <TeamPokemon pokemon={p1} order={1} />
+        <TeamPokemon pokemon={p2} order={2} />
+        <TeamPokemon pokemon={p3} order={3} />
+        <TeamPokemon pokemon={p4} order={4} />
+        <TeamPokemon pokemon={p5} order={5} />
+        <TeamPokemon pokemon={p6} order={6} />
       </div>
 
     </div>

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className="flex p-3 bg-emerald-200 text-emerald-800 text-2xl justify-between items-center">
+    <nav className="w-full flex p-3 bg-emerald-200 text-emerald-800 text-2xl justify-between items-center">
       <Link href='/dashboard'>
         <a>Team Builder</a>
       </Link>
