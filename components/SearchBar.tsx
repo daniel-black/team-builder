@@ -55,7 +55,7 @@ const SearchBar = ({ setSearchResult }: Props) => {
           Search
         </button>
       </form>
-      {notFound && <p>Uh oh, couldn't find <span className='font-bold'>{search}</span>!</p>}
+      {notFound && <p>Uh oh, couldn&apos;t find <span className='font-bold'>{search}</span>!</p>}
     </div>
   );
 }
