@@ -6,12 +6,13 @@ type Props = {
 };
 
 const SearchResult = ({ pokemon }: Props) => {
-  if (!pokemon) return null;
+  const official = pokemon?.sprites.other?.["official-artwork"]?.front_default;
 
-  const official = pokemon.sprites.other?.["official-artwork"]?.front_default;
+  const renderSearchContent = () => {
+    if (!pokemon) return <img src="/pokeball.png" alt="pokeball" className="py-3" />;
 
-  return (
-    <div className='flex justify-center items-center px-2 bg-emerald-100/80 w-full'>
+    return (
+     <>
       <PokemonImage 
         name={pokemon?.name} 
         imgUrl={official} 
@@ -27,6 +28,13 @@ const SearchResult = ({ pokemon }: Props) => {
           {pokemon.types.map(t => (<li key={t.slot}>{t.type}</li>))}
         </ul>
       </div>
+     </>
+    );
+  }
+
+  return (
+    <div className='flex justify-center items-center px-2 bg-emerald-100/80 w-full'>
+      {renderSearchContent()}
     </div>
   );
 }

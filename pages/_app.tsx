@@ -2,10 +2,9 @@ import { withTRPC } from "@trpc/next";
 import { AppType } from "next/dist/shared/lib/utils";
 import { ServerRouter } from "../server/router";
 import { SessionProvider } from 'next-auth/react';
-import type { AppProps } from "next/app";
 import '../styles/globals.css';
 
-const App: AppType = ({ Component, pageProps }: AppProps) => {
+const App: AppType = ({ Component, pageProps }) => {
   return (
     <SessionProvider session={pageProps.session}>
       <Component {...pageProps} />
