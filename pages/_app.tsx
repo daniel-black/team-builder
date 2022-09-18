@@ -6,7 +6,7 @@ import '../styles/globals.css';
 
 const App: AppType = ({ Component, pageProps }) => {
   return (
-    <SessionProvider session={pageProps?.session}>
+    <SessionProvider session={pageProps?.session || null}>
       <Component {...pageProps} />
     </SessionProvider>
   );

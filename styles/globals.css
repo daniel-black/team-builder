@@ -1,3 +1,81 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .type-pill {
+    @apply rounded-full max-w-fit px-3 border-2 font-mono font-bold capitalize;
+  }
+
+  .bug {
+    @apply bg-bug-light text-bug-dark border-bug-dark;
+  }
+
+  .dark {
+    @apply bg-dark-light text-dark-dark border-dark-dark;
+  }
+
+  .dragon {
+    @apply bg-dragon-light text-dragon-dark border-dragon-dark;
+  }
+
+  .electric {
+    @apply bg-electric-light text-electric-dark border-electric-dark;
+  }
+
+  .fairy {
+    @apply bg-fairy-light text-fairy-dark border-fairy-dark;
+  }
+
+  .fighting {
+    @apply bg-fighting-light text-fighting-dark border-fighting-dark;
+  }
+
+  .fire {
+    @apply bg-fire-light text-fire-dark border-fire-dark;
+  }
+
+  .flying {
+    @apply bg-flying-light text-flying-dark border-flying-dark;
+  }
+
+  .ghost {
+    @apply bg-ghost-light text-ghost-dark border-ghost-dark;
+  }
+
+  .grass {
+    @apply bg-grass-light text-grass-dark border-grass-dark;
+  }
+
+  .ground {
+    @apply bg-ground-light text-ground-dark border-ground-dark;
+  }
+
+  .ice {
+    @apply bg-ice-light text-ice-dark border-ice-dark;
+  }
+
+  .normal {
+    @apply bg-normal-light text-normal-dark border-normal-dark;
+  }
+
+  .poison {
+    @apply bg-poison-light text-poison-dark border-poison-dark;
+  }
+
+  .psychic {
+    @apply bg-psychic-light text-psychic-dark border-psychic-dark;
+  }
+
+  .rock {
+    @apply bg-rock-light text-rock-dark border-rock-dark;
+  }
+
+  .steel {
+    @apply bg-steel-light text-steel-dark border-steel-dark;
+  }
+
+  .water {
+    @apply bg-water-light text-water-dark border-water-dark;
+  }
+}

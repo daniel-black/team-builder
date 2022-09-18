@@ -7,8 +7,28 @@ export type Pokemon = {
 
 export type PokemonType = {
   slot: number,
-  type: string,
+  type: PokemonTypeString,
 };
+
+export type PokemonTypeString = 
+  | 'bug' 
+  | 'dark' 
+  | 'dragon' 
+  | 'electric' 
+  | 'fairy' 
+  | 'fighting' 
+  | 'fire' 
+  | 'flying' 
+  | 'ghost' 
+  | 'grass' 
+  | 'ground' 
+  | 'ice' 
+  | 'normal' 
+  | 'poison' 
+  | 'psychic' 
+  | 'rock' 
+  | 'steel' 
+  | 'water';
 
 export type Sprites = {
   back_default?: string,

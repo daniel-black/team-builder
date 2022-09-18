@@ -1,5 +1,6 @@
 import { Pokemon } from "../types/pokemonTypes";
 import PokemonImage from "./PokemonImage";
+import PokemonTypePill from "./PokemonTypePill";
 
 type Props = {
   pokemon: Pokemon | null,
@@ -19,13 +20,16 @@ const SearchResult = ({ pokemon }: Props) => {
         sprites={pokemon?.sprites} 
         big={true}
       />
-      <div className="px-3">
-        <h2 className="text-3xl capitalize">
-          {pokemon?.name}
-        </h2>
-        <p>Index number: {pokemon.poke_id}</p>
-        <ul>
-          {pokemon.types.map(t => (<li key={t.slot}>{t.type}</li>))}
+      <div className="px-3 space-y-2">
+        <div className="flex items-center space-x-2">
+          <h2 className="text-3xl capitalize">{pokemon?.name}</h2>
+          <p className="opacity-50">(No. {pokemon.poke_id})</p>
+        </div>
+        
+        <ul className="flex space-x-1">
+          {pokemon.types.map(t => (
+            <PokemonTypePill pokemonType={t.type} key={t.slot} />
+          ))}
         </ul>
       </div>
      </>
